@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    block content
+
+  script(type="text/javascript").
+    setInterval(() => {
+      fetch("http://localhost:3001/magic")
+      .then(response => response.json())
+      .then(json => {
+        console.log("JSON:", json)
+        const p = document.getElementsByTagName("p")[0]
+        const br = document.createElement("br");
+        p.appendChild(br);
+        p.append(new Date(Date.now()) + " " + json)
+      })
+    }, 1500)
